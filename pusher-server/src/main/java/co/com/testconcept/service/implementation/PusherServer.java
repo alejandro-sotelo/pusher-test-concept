@@ -2,6 +2,7 @@ package co.com.testconcept.service.implementation;
 
 import co.com.testconcept.service.WebsocketServer;
 import com.pusher.rest.Pusher;
+import org.pmw.tinylog.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,7 @@ public class PusherServer implements WebsocketServer {
 
     @Override
     public void triggerEvent(String transactionId){
+        Logger.info("Solicitud: "+transactionId);
         pusher.trigger("unique-channel", transactionId, Collections.singletonMap("message", "hello world: "+transactionId));
     }
 }
